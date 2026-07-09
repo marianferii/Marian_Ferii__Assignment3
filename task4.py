@@ -1,38 +1,38 @@
 employees = [
-    {"name": "Олена", "department": "Marketing", "salary": 25000},
+    {"name": "Олена", "department": "Marketing", "salary":
+    25000},
     {"name": "Ігор", "department": "IT", "salary": 55000},
-    {"name": "Наталія", "department": "Marketing", "salary": 28000},
+    {"name": "Наталія", "department": "Marketing", "salary":
+    28000},
     {"name": "Олег", "department": "HR", "salary": 22000},
     {"name": "Андрій", "department": "IT", "salary": 48000},
     {"name": "Марія", "department": "IT", "salary": 52000},
 ]
 
-
 def get_department_stats(employee_list, target_dept):
-    dept = []
-    for emp in employee_list:
-        if emp["department"] == target_dept:
-            dept.append(emp)
+    dept_employees = []
+    for employee in employee_list:
+        if employee["department"] == target_dept:
+            dept_employees.append(employee)
 
-    if len(dept) == 0:
-        return f"Відділ '{target_dept}' не знайдено"
+    number_of_employees = len(dept_employees)
 
-    total = 0
-    for emp in dept:
-        total += emp["salary"]
-    avg = round(total / len(dept), 2)
+    total_salary = 0
+    for employee in dept_employees:
+        total_salary += employee["salary"]
 
-    top = dept[0]
-    for emp in dept:
-        if emp["salary"] > top["salary"]:
-            top = emp
+    average_salary = round(total_salary / number_of_employees, 2)
 
-    return {"department": target_dept, "average_salary": avg, "top_earner": top["name"], "count": len(dept)}
+    top = dept_employees[0]
+    for employee in dept_employees:
+        if employee["salary"] > top["salary"]:
+            top = employee
 
+IT = (get_department_stats(employees,"IT"))
+Marketing = (get_department_stats(employees,"Marketing"))
 
-it_result = get_department_stats(employees, "IT")
-mark_result = get_department_stats(employees, "Marketing")
-
-print("IT:", it_result)
-print("Marketing:", mark_result)
-print("HR:", get_department_stats(employees, "HR"))
+print("-"*50)
+print(f"У відділі {IT["department"]} середня зарплата склала {IT["average_salary"]}.\nЗ {IT["count"]} співробітників найкращим став/ла {IT['top_earner']}.")
+print("-"*50)
+print(f"У відділі {Marketing["department"]} середня зарплата склала {Marketing["average_salary"]}.\nЗ {Marketing["count"]} співробітників найкращим став/ла {Marketing['top_earner']}.")
+print("-"*50)

@@ -2,27 +2,24 @@ exam_results = [
     {"student_name": "Анна", "score": 91},
     {"student_name": "Богдан", "score": 58},
     {"student_name": "Вікторія", "score": 75},
-    {"student_name": "Григорій", "score": 45},
-    {"student_name": "Дарина", "score": 60},
+    {"student_name": "Григорій", "score": 45}
 ]
-
 passing_score = 60
 
+passed = 0
 for student in exam_results:
     if student["score"] >= passing_score:
         student["passed"] = True
+        passed += 1
     else:
         student["passed"] = False
 
-for s in exam_results:
-    result = "склав" if s["passed"] else "не склав"
-    print(f"{s['student_name']}: {s['score']} балів - {result}")
-
-print()
 print(exam_results)
+print("-"*50)
+print(f"Кількість студентів які здали: {passed}")
 
-total = 0
-for s in exam_results:
-    total += s["score"]
-
-print(f"\nСередній бал: {round(total / len(exam_results), 1)}")
+total_score = 0
+for student in exam_results:
+    total_score += student["score"]
+average = total_score / len(exam_results)
+print(f"Середній бал: {average}")
